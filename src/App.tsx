@@ -1,11 +1,9 @@
 import React from 'react';
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
       Hi, Olga!
     </div>
   );
 }
-
-export default App;
