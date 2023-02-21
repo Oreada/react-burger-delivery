@@ -7,6 +7,10 @@
   margin-bottom: 30px;
 }
 
+.header__container {
+  margin: 0 auto;
+}
+
 .header__logo {
   width: 150px;
   color: #fff;
