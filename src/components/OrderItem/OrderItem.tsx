@@ -20,7 +20,7 @@ export const OrderItem = ({ title }: OrderItemProps) => {
 				</p>
 			</div>
 
-			<Count count={3} />
+			<Count />
 		</li>
 	)
 };

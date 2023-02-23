@@ -16,6 +16,10 @@
   width: 8px;
 }
 
+.count__minus:disabled {
+  cursor: default;
+}
+
 .count__plus {
   width: 8px;
 }
