@@ -84,7 +84,7 @@
   outline: none;
 }
 
-.navigation__button_burger {
+/* .navigation__button_burger {
   background-image: url('../../img/burger.png');
 }
 
@@ -118,7 +118,7 @@
 
 .navigation__button_sauce {
   background-image: url('../../img/sauce.png');
-}
+} */
 
 @media (min-width: 768px) {
   .navigation__list {

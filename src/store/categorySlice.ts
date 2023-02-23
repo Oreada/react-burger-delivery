@@ -14,6 +14,10 @@ export type CategoryState = {
 	activeCategory: number;
 };
 
+type Payload = {
+	indexCategory: number;
+};
+
 const initialState: CategoryState = {
 	category: [
 		{ title: 'burger', rus: 'Бургеры', image: '/img/burger.png' },
@@ -34,9 +38,14 @@ const categorySlice = createSlice({
 	name: 'category',
 	initialState: initialState,
 	reducers: {
-
+		changeCategory(state, action: PayloadAction<Payload>) {
+			console.log('state=', state);
+			console.log('action=', action);
+			state.activeCategory = action.payload.indexCategory;
+		},
 	},
 });
 
+export const { changeCategory } = categorySlice.actions;
 
 export default categorySlice.reducer; //! в файле index.ts импортировала его как categoryReducer
