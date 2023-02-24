@@ -36,20 +36,19 @@ const initialState: CategoryState = {
 };
 
 //! <чтоВозвращает, чтоПринимает, допОпции>
-export const getCategoriesList: AsyncThunk<CategoriesList, undefined, { rejectValue: { error: string } }> = createAsyncThunk<
+export const getCategoriesList: AsyncThunk<CategoriesList, undefined, { rejectValue: string }> = createAsyncThunk<
 	CategoriesList,
 	undefined,
-	{ rejectValue: { error: string } }>(
+	{ rejectValue: string }>(
 		'category/fetch',
-		async (data, obj) => {
-			console.log('data', data);
-			console.log('obj', obj);
+		async (_, { rejectWithValue }) => {
 
 			try {
-				const res = await fetch(`${API_URL}${POSTFIX_PRODUCT}/category`);
+				const res = await fetch(`${API_URL}888${POSTFIX_PRODUCT}/category`);
 				return await res.json();
-			} catch (error) {
-				return ({ error });
+			} catch (e) {
+				const err = e as Error;
+				return rejectWithValue(err.message);
 			}
 		}
 	);
@@ -73,7 +72,8 @@ const categorySlice = createSlice({
 			})
 			.addCase(getCategoriesList.rejected, (state, action) => {
 				state.category = [];
-				state.error = action.payload?.error as string; //* TODO: разобраться с записью ошибки
+				state.error = action.payload as string; //* TODO: сделать вывод ошибки для пользователя
+				console.log(state.error);
 			})
 	},
 });
