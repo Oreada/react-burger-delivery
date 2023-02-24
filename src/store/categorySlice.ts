@@ -44,7 +44,7 @@ export const getCategoriesList: AsyncThunk<CategoriesList, undefined, { rejectVa
 		async (_, { rejectWithValue }) => {
 
 			try {
-				const res = await fetch(`${API_URL}888${POSTFIX_PRODUCT}/category`);
+				const res = await fetch(`${API_URL}${POSTFIX_PRODUCT}/category`);
 				return await res.json();
 			} catch (e) {
 				const err = e as Error;
