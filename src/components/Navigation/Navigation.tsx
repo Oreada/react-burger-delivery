@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import { changeCategory } from '../../store/categorySlice';
+import { useEffect } from 'react';
+import { getCategoriesList, changeCategory } from '../../store/categorySlice';
 import { useAppSelector, useAppDispatch } from '../../store/hook';
 import style from './Navigation.module.css';
 
@@ -10,6 +11,11 @@ export const Navigation = () => {
 
 	const dispatch = useAppDispatch();
 
+	useEffect(() => {
+		dispatch(getCategoriesList());
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	const handleClick = (index: number) => {
 		dispatch(changeCategory({ indexCategory: index }));
 	};
@@ -19,7 +25,28 @@ export const Navigation = () => {
 			<div className={classNames(style.navigation__container, style.container)}>
 				<ul className={style.navigation__list}>
 
-					{categoriesList.map((item, index) => (
+					{
+						//* TODO: после деплоя бэка заменить backgroundImage на `url(${API_URI}/${item.image}`)
+						(() => {
+							if (Array.isArray(categoriesList)) {
+								return (
+									categoriesList.map((item, index) => (
+										<li key={item.title} className={style.navigation__item}>
+											<button className={classNames(style.navigation__button,
+												activeIndex === index ? style.navigation__button_active : '')}
+												style={{ backgroundImage: `url(${item.image})` }}
+												onClick={() => handleClick(index)}
+											>
+												{item.rus}
+											</button>
+										</li>
+									))
+								)
+							}
+						})()
+					}
+
+					{/* {categoriesList.map((item, index) => (
 						<li key={index} className={style.navigation__item}>
 							<button className={classNames(style.navigation__button,
 								activeIndex === index ? style.navigation__button_active : '')}
@@ -29,7 +56,7 @@ export const Navigation = () => {
 								{item.rus}
 							</button>
 						</li>
-					))}
+					))} */}
 
 				</ul>
 			</div>
