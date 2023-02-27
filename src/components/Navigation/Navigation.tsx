@@ -17,7 +17,7 @@ export const Navigation = () => {
 	}, []);
 
 	const handleClick = (index: number) => {
-		dispatch(changeCategory({ indexCategory: index }));
+		dispatch(changeCategory(index));
 	};
 
 	return (

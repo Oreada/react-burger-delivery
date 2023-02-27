@@ -15,9 +15,7 @@ export type CategoryState = {
 	activeCategory: number;
 };
 
-type Payload = {
-	indexCategory: number;
-};
+type Payload = number;
 
 const initialState: CategoryState = {
 	category: [
@@ -58,7 +56,7 @@ const categorySlice = createSlice({
 	initialState: initialState,
 	reducers: {
 		changeCategory(state, action: PayloadAction<Payload>) {
-			state.activeCategory = action.payload.indexCategory;
+			state.activeCategory = action.payload;
 		},
 	},
 	extraReducers(builder) {
