@@ -13,8 +13,8 @@ export const Product = ({ product }: ProductProps) => {
 
 	const dispatch = useAppDispatch();
 
-	const handleClick = (product: ProductType) => {
-		dispatch(addProduct(product));
+	const handleClick = (idObj: { id: string }) => {
+		dispatch(addProduct(idObj));
 		// console.log(orderList); //! выводит с отставанием на одно действие
 	};
 
@@ -33,7 +33,7 @@ export const Product = ({ product }: ProductProps) => {
 			<button
 				className={style.product__add}
 				type="button"
-				onClick={() => handleClick(product)}>
+				onClick={() => handleClick({ id: product.id })}>
 				Добавить
 			</button>
 		</article>

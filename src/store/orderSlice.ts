@@ -3,15 +3,26 @@ import { ProductType } from './productSlice';
 
 type ProductWithCount = ProductType & { count: number };
 
+export type ProductForOrder = {
+	id: string;
+	count: number;
+};
+
 export type OrderState = {
-	orderList: Array<ProductWithCount>;
+	orderList: Array<ProductForOrder>;
+	orderGoods: Array<ProductWithCount>;
+	totalPrice: number,
+	totalCount: number,
 	error: string;
 };
 
-type Payload = ProductType;
+type Payload = { id: string; };
 
 const initialState: OrderState = {
 	orderList: JSON.parse(localStorage.getItem('orderList') || '[]'),
+	orderGoods: [],
+	totalPrice: 0,
+	totalCount: 0,
 	error: '',
 };
 
@@ -40,7 +51,7 @@ const orderSlice = createSlice({
 			if (choosenProduct) {
 				choosenProduct.count += 1; //! увеличиваю счётчик, если такой товар уже есть в orderList
 			} else {
-				state.orderList.push({ ...action.payload, count: 1 }); //! добавляю товар ProductType плюс счётчик
+				state.orderList.push({ ...action.payload, count: 1 }); //! добавляю id товара плюс счётчик
 			};
 		},
 	},
