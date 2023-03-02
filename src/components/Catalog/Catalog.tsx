@@ -40,15 +40,19 @@ export const Catalog = () => {
 					</h2>
 
 					<div className={style.catalog__wrap_list}>
-						<ul className={style.catalog__list}>
 
-							{products.map((item) => (
-								<li key={item.id} className={style.catalog__item}>
-									<Product product={item} />
-								</li>
-							))}
+						{products.length ? (
+							<ul className={style.catalog__list}>
 
-						</ul>
+								{products.map((item) => (
+									<li key={item.id} className={style.catalog__item}>
+										<Product product={item} />
+									</li>
+								))}
+
+							</ul>
+						) : (<p className={style.catalog__empty}>На данный момент в этой категории нет товаров</p>)}
+
 					</div>
 				</div>
 			</div>
