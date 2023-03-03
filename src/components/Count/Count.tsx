@@ -1,3 +1,5 @@
+import { useAppDispatch } from '../../store/hook';
+import { addProduct, subtractProduct } from '../../store/orderSlice';
 import style from './Count.module.css';
 
 export type CountProps = {
@@ -6,18 +8,19 @@ export type CountProps = {
 };
 
 export const Count = ({ count, id }: CountProps) => {
+	const dispatch = useAppDispatch();
 
 	const increaseNumber = () => {
+		dispatch(addProduct({ id: id }));
 	};
 
 	const decreaseNumber = () => {
-		// if (count > 1) {
-		// };
+		dispatch(subtractProduct({ id: id }));
 	};
 
 	return (
 		<div className={style.count}>
-			<button className={style.count__minus} onClick={decreaseNumber} disabled={count === 1}>-</button>
+			<button className={style.count__minus} onClick={decreaseNumber}	>-</button>
 			<p className={style.count__amount}>{count}</p>
 			<button className={style.count__plus} onClick={increaseNumber}>+</button>
 		</div>

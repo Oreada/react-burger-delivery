@@ -68,12 +68,39 @@ const orderSlice = createSlice({
 	initialState: initialState,
 	reducers: {
 		addProduct(state, action: PayloadAction<Payload>) {
-			const choosenProduct = state.orderList.find((item) => item.id === action.payload.id);
+			const choosenProduct = state.orderList.find((item) => item.id === action.payload.id); //! сохраняется в localStorage через мой localStorageMiddleware
 
 			if (choosenProduct) {
 				choosenProduct.count += 1; //! увеличиваю счётчик, если такой товар уже есть в orderList
+
+				const orderGood = state.orderGoods.find((item) => item.id === action.payload.id);
+				if (orderGood) {
+					orderGood.count = choosenProduct.count; //! АКТУАЛИЗИРУЮ данные в orderGoods в связи с addProduct
+				};
+
+				state.totalCount = state.orderGoods.reduce((acc, cur) => acc + cur.count, 0); //! АКТУАЛИЗИРУЮ данные в orderGoods в связи с addProduct
+				state.totalPrice = state.orderGoods.reduce((acc, cur) => acc + cur.count * cur.price, 0); //! АКТУАЛИЗИРУЮ данные в orderGoods в связи с addProduct
+
 			} else {
 				state.orderList.push({ ...action.payload, count: 1 }); //! добавляю id товара плюс счётчик
+			};
+		},
+		subtractProduct(state, action: PayloadAction<Payload>) {
+			const choosenProduct = state.orderList.find((item) => item.id === action.payload.id); //! сохраняется в localStorage через мой localStorageMiddleware
+
+			if ((choosenProduct as ProductForOrder).count > 1) {
+				(choosenProduct as ProductForOrder).count -= 1; //! уменьшаю счётчик, если таких товаров больше одного
+
+				const orderGood = state.orderGoods.find((item) => item.id === action.payload.id);
+				if (orderGood) {
+					orderGood.count = (choosenProduct as ProductForOrder).count; //! АКТУАЛИЗИРУЮ данные в orderGoods в связи с subtractProduct
+				};
+
+				state.totalCount = state.orderGoods.reduce((acc, cur) => acc + cur.count, 0); //! АКТУАЛИЗИРУЮ данные в orderGoods в связи с subtractProduct
+				state.totalPrice = state.orderGoods.reduce((acc, cur) => acc + cur.count * cur.price, 0); //! АКТУАЛИЗИРУЮ данные в orderGoods в связи с subtractProduct
+
+			} else {
+				state.orderList = state.orderList.filter((item) => item.id !== action.payload.id); //! сохраняем товары КРОМЕ того, который удалили (count был 1)
 			};
 		},
 	},
@@ -119,6 +146,6 @@ const orderSlice = createSlice({
 	},
 });
 
-export const { addProduct } = orderSlice.actions;
+export const { addProduct, subtractProduct } = orderSlice.actions;
 
 export default orderSlice.reducer; //! в файле index.ts импортировала его как orderReducer
