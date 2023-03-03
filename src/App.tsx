@@ -1,6 +1,7 @@
 import React from 'react';
 import { Catalog } from './components/Catalog/Catalog';
 import { Header } from './components/Header/Header';
+import { ModalDelivery } from './components/ModalDelivery/ModalDelivery';
 import { Navigation } from './components/Navigation/Navigation';
 
 export const App = () => {
@@ -11,6 +12,7 @@ export const App = () => {
         <Navigation />
         <Catalog />
       </main>
+      <ModalDelivery />
     </div>
   );
 };
