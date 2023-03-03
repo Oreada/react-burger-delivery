@@ -1,21 +1,18 @@
-import { useState } from 'react';
 import style from './Count.module.css';
 
-// export type CountProps = {
-// 	count: number;
-// };
+export type CountProps = {
+	count: number;
+	id: string;
+};
 
-export const Count = () => {
-	const [count, setCount] = useState(1);
+export const Count = ({ count, id }: CountProps) => {
 
 	const increaseNumber = () => {
-		setCount(prev => prev + 1);
 	};
 
 	const decreaseNumber = () => {
-		if (count > 1) {
-			setCount(prev => prev - 1);
-		};
+		// if (count > 1) {
+		// };
 	};
 
 	return (

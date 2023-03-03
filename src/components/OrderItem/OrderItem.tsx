@@ -1,26 +1,28 @@
+import { API_URL } from '../../constants';
+import { ProductWithCount } from '../../store/orderSlice';
 import { Count } from '../Count/Count';
 import style from './OrderItem.module.css';
 
 export type OrderItemProps = {
-	title: string;
+	good: ProductWithCount;
 };
 
-export const OrderItem = ({ title }: OrderItemProps) => {
+export const OrderItem = ({ good }: OrderItemProps) => {
 	return (
 		<li className={style.order__item}>
-			<img className={style.order__image} src="img/burger_1.jpg" alt={title} />
+			<img className={style.order__image} src={`${API_URL}/${good.image}`} alt={good.title} />
 
 			<div className={style.goods}>
-				<h3 className={style.goods__title}>{title}</h3>
+				<h3 className={style.goods__title}>{good.title}</h3>
 
-				<p className={style.goods__weight}>512г</p>
+				<p className={style.goods__weight}>{good.weight}&nbsp;г</p>
 
-				<p className={style.goods__price}>1279
-					<span className={style.currency}>₽</span>
+				<p className={style.goods__price}>{good.price}
+					<span className={style.currency}>&nbsp;₽</span>
 				</p>
 			</div>
 
-			<Count />
+			<Count count={good.count} id={good.id} />
 		</li>
 	)
 };
