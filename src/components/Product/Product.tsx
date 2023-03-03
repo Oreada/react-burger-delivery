@@ -22,7 +22,7 @@ export const Product = ({ product }: ProductProps) => {
 		<article className={style.product}>
 			<img src={`${API_URL}/${product.image}`} alt={product.title} className={style.product__image} />
 
-			<p className={style.product__price}>{product.price}<span className={style.currency}>₽</span></p>
+			<p className={style.product__price}>{product.price}<span className={style.currency}>&nbsp;₽</span></p>
 
 			<h3 className={style.product__title}>
 				<button className={style.product__detail}>{product.title}</button>
