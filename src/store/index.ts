@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import categoryReducer from './categorySlice';
 import productReducer from './productSlice';
 import orderReducer, { localStorageMiddleware } from './orderSlice';
+import modalDeliveryReducer from './modalDeliverySlice';
 
 export const store = configureStore({
 	reducer: {
 		category: categoryReducer,
 		product: productReducer,
 		order: orderReducer,
+		modalDelivery: modalDeliveryReducer,
 	},
 
 	middleware(getDefaultMiddleware) {
