@@ -1,7 +1,9 @@
-import { createSlice, Middleware, PayloadAction } from '@reduxjs/toolkit';
-import { ProductType } from './productSlice';
+import { AsyncThunk, createAsyncThunk, createSlice, Middleware, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '.';
+import { API_URL, POSTFIX_PRODUCT } from '../constants';
+import { ProductsList, ProductType } from './productSlice';
 
-type ProductWithCount = ProductType & { count: number };
+export type ProductWithCount = ProductType & { count: number };
 
 export type ProductForOrder = {
 	id: string;
@@ -41,6 +43,26 @@ export const localStorageMiddleware: Middleware = (store) => (next) => (action) 
 	return nextAction;
 };
 
+//! <чтоВозвращает, чтоПринимает, допОпции>
+export const getOrderList: AsyncThunk<ProductsList, undefined, { rejectValue: string }> = createAsyncThunk<
+	ProductsList,
+	undefined,
+	{ rejectValue: string }>(
+		'order/fetch',
+		async (_, { rejectWithValue, getState }) => {
+			const listIds = (getState() as RootState).order.orderList.map((item) => item.id);
+			console.log('tets listIds', listIds);
+
+			try {
+				const res = await fetch(`${API_URL}${POSTFIX_PRODUCT}?list=${listIds}`);
+				return await res.json();
+			} catch (e) {
+				const err = e as Error;
+				return rejectWithValue(err.message);
+			}
+		}
+	);
+
 const orderSlice = createSlice({
 	name: 'order',
 	initialState: initialState,
@@ -54,6 +76,46 @@ const orderSlice = createSlice({
 				state.orderList.push({ ...action.payload, count: 1 }); //! добавляю id товара плюс счётчик
 			};
 		},
+	},
+	extraReducers(builder) {
+		builder
+			.addCase(
+				getOrderList.pending, (state) => {
+					state.error = '';
+				})
+			.addCase(
+				getOrderList.fulfilled, (state, action) => {
+					const productWithCountList = state.orderList.map((item) => {
+						const product = action.payload.find((pr) => pr.id === item.id); //! находим каждый полученный товар среди orderList
+
+						const productWithCount = product ? { ...product, count: item.count } :
+							{
+								calories: 0,
+								category: '',
+								description: '',
+								id: '',
+								image: '',
+								ingredients: [],
+								price: 0,
+								title: '',
+								weight: 0,
+								count: 0,
+							};
+
+						return productWithCount; //! теперь это не просто товары, а в каждом есть ещё и count
+					});
+
+					state.error = '';
+					state.orderGoods = productWithCountList as Array<ProductWithCount>;
+					state.totalCount = productWithCountList.reduce((acc, cur) => acc + cur.count, 0);
+					state.totalPrice = productWithCountList.reduce((acc, cur) => acc + cur.count * cur.price, 0);
+				})
+			.addCase(
+				getOrderList.rejected, (state, action) => {
+					state.orderGoods = [];
+					state.error = action.payload as string; //* TODO: сделать вывод ошибки для пользователя
+					console.log(state.error);
+				})
 	},
 });
 
