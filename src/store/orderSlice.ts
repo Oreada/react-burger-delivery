@@ -103,6 +103,10 @@ const orderSlice = createSlice({
 				state.orderList = state.orderList.filter((item) => item.id !== action.payload.id); //! сохраняем товары КРОМЕ того, который удалили (count был 1)
 			};
 		},
+		clearOrder(state) {
+			state.orderList = [];
+			state.orderGoods = [];
+		},
 	},
 	extraReducers(builder) {
 		builder
@@ -146,6 +150,6 @@ const orderSlice = createSlice({
 	},
 });
 
-export const { addProduct, subtractProduct } = orderSlice.actions;
+export const { addProduct, subtractProduct, clearOrder } = orderSlice.actions;
 
 export default orderSlice.reducer; //! в файле index.ts импортировала его как orderReducer
