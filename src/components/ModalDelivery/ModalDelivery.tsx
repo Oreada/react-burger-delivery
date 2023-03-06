@@ -1,10 +1,24 @@
 import classNames from 'classnames';
 import { useState } from 'react';
-import { useAppDispatch } from '../../store/hook';
+import { useSubmitOrder } from '../../api/submitOrder';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { closeModal } from '../../store/modalDeliverySlice';
 import style from './ModalDelivery.module.css';
 
+export type FormData = {
+  name: string,
+  phone: string,
+  format: string,
+  address: string,
+  floor: string,
+  intercom: string,
+};
+
 export const ModalDelivery = () => {
+  const { orderList } = useAppSelector((state) => state.order);
+
+  const submitOrder = useSubmitOrder(); //! обернула функцию сабмита заказа в кастомный хук
+
   const dispatch = useAppDispatch();
 
   const handleCloseModal = (event: React.MouseEvent<HTMLElement>) => {
@@ -14,10 +28,10 @@ export const ModalDelivery = () => {
     };
   };
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
-    format: '',
+    format: 'delivery',
     address: '',
     floor: '',
     intercom: '',
@@ -36,6 +50,8 @@ export const ModalDelivery = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log('formData', formData);
+
+    submitOrder({ ...formData, orderList: orderList });
   };
 
   return (
@@ -50,6 +66,7 @@ export const ModalDelivery = () => {
                 className={style.input}
                 type='text'
                 name='name'
+                value={formData.name}
                 placeholder='Ваше имя'
                 onChange={handleChange}
               />
@@ -57,6 +74,7 @@ export const ModalDelivery = () => {
                 className={style.input}
                 type='tel'
                 name='phone'
+                value={formData.phone}
                 placeholder='Телефон'
                 onChange={handleChange}
               />
@@ -88,29 +106,36 @@ export const ModalDelivery = () => {
               </label>
             </fieldset>
 
-            <fieldset className={style.fieldset}>
-              <input
-                className={style.input}
-                type='text'
-                name='address'
-                placeholder='Улица, дом, квартира'
-                onChange={handleChange}
-              />
-              <input
-                className={classNames(style.input, style.input_half)}
-                type='number'
-                name='floor'
-                placeholder='Этаж'
-                onChange={handleChange}
-              />
-              <input
-                className={classNames(style.input, style.input_half)}
-                type='number'
-                name='intercom'
-                placeholder='Домофон'
-                onChange={handleChange}
-              />
-            </fieldset>
+            {
+              formData.format === 'delivery' && (
+                <fieldset className={style.fieldset}>
+                  <input
+                    className={style.input}
+                    type='text'
+                    name='address'
+                    value={formData.address}
+                    placeholder='Улица, дом, квартира'
+                    onChange={handleChange}
+                  />
+                  <input
+                    className={classNames(style.input, style.input_half)}
+                    type='number'
+                    name='floor'
+                    value={formData.floor}
+                    placeholder='Этаж'
+                    onChange={handleChange}
+                  />
+                  <input
+                    className={classNames(style.input, style.input_half)}
+                    type='number'
+                    name='intercom'
+                    value={formData.intercom}
+                    placeholder='Домофон'
+                    onChange={handleChange}
+                  />
+                </fieldset>
+              )
+            }
           </form>
 
           <button
