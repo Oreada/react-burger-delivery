@@ -3,8 +3,11 @@ import { Catalog } from './components/Catalog/Catalog';
 import { Header } from './components/Header/Header';
 import { ModalDelivery } from './components/ModalDelivery/ModalDelivery';
 import { Navigation } from './components/Navigation/Navigation';
+import { useAppSelector } from './store/hook';
 
 export const App = () => {
+  const { isOpen } = useAppSelector((state) => state.modalDelivery); //! так достаём данные из redux store
+
   return (
     <div>
       <Header />
@@ -12,7 +15,7 @@ export const App = () => {
         <Navigation />
         <Catalog />
       </main>
-      <ModalDelivery />
+      {isOpen && <ModalDelivery />}
     </div>
   );
 };

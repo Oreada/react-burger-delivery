@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { openModal } from '../../store/modalDeliverySlice';
 import { getOrderList } from '../../store/orderSlice';
 import { OrderItem } from '../OrderItem/OrderItem';
 import style from './Order.module.css';
@@ -21,6 +22,10 @@ export const Order = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [orderList.length]); //! делаем новый запрос на сервер, если добавили НОВЫЙ товар или убрали какой-то совсем
 	//! не делаем новый запрос на сервер, если меняется количество товаров, которые уже есть в списке
+
+	const handleClick = () => {
+		dispatch(openModal());
+	};
 
 	return (
 		<div className={classNames(style.catalog__order, style.order)}>
@@ -48,7 +53,13 @@ export const Order = () => {
 						</p>
 					</div>
 
-					<button className={style.order__submit}>Оформить заказ</button>
+					<button
+						className={style.order__submit}
+						disabled={orderGoods.length === 0}
+						onClick={handleClick}
+					>
+						Оформить заказ
+					</button>
 
 					<div className={style.order__apeal}>
 						<p className={style.order__text}>Бесплатная доставка</p>
