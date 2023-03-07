@@ -23,7 +23,7 @@ export const ModalDelivery = () => {
 
   const handleCloseModal = (event: React.MouseEvent<HTMLElement>) => {
     if (event.target === event.currentTarget ||
-      ((event.target as HTMLElement).parentElement as HTMLElement).id === 'modal__close') {
+      ((event.target as HTMLElement).parentElement as HTMLElement).id === 'closeDelivery') {
       dispatch(closeModalDelivery());
     };
   };
@@ -148,7 +148,7 @@ export const ModalDelivery = () => {
           </button>
         </div>
 
-        <button className={style.modal__close} type='button' id='modal__close' onClick={handleCloseModal}>
+        <button className={style.modal__close} type='button' id='closeDelivery' onClick={handleCloseModal}>
           <svg
             width='24'
             height='24'
