@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
-import { openModal } from '../../store/modalDeliverySlice';
+import { openModalDelivery } from '../../store/modalDeliverySlice';
 import { getOrderList } from '../../store/orderSlice';
 import { OrderItem } from '../OrderItem/OrderItem';
 import style from './Order.module.css';
@@ -24,7 +24,7 @@ export const Order = () => {
 	//! не делаем новый запрос на сервер, если меняется количество товаров, которые уже есть в списке
 
 	const handleClick = () => {
-		dispatch(openModal());
+		dispatch(openModalDelivery());
 	};
 
 	return (

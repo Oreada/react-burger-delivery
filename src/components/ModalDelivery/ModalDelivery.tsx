@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { useSubmitOrder } from '../../api/submitOrder';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
-import { closeModal } from '../../store/modalDeliverySlice';
+import { closeModalDelivery } from '../../store/modalDeliverySlice';
 import style from './ModalDelivery.module.css';
 
 export type FormData = {
@@ -24,7 +24,7 @@ export const ModalDelivery = () => {
   const handleCloseModal = (event: React.MouseEvent<HTMLElement>) => {
     if (event.target === event.currentTarget ||
       ((event.target as HTMLElement).parentElement as HTMLElement).id === 'modal__close') {
-      dispatch(closeModal());
+      dispatch(closeModalDelivery());
     };
   };
 
@@ -49,7 +49,7 @@ export const ModalDelivery = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(closeModal());
+    dispatch(closeModalDelivery());
     //* TODO: выдать окно "Ваш заказ принят, в ближайшее время позвонит наш оператор"
 
     submitOrder({ ...formData, orderList: orderList });

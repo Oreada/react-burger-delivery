@@ -12,15 +12,15 @@ const modalDeliverySlice = createSlice({
 	name: 'modalDelivery',
 	initialState: initialState,
 	reducers: {
-		openModal(state) {
+		openModalDelivery(state) {
 			state.isDeliveryOpen = true;
 		},
-		closeModal(state) {
+		closeModalDelivery(state) {
 			state.isDeliveryOpen = false;
 		},
 	},
 });
 
-export const { openModal, closeModal } = modalDeliverySlice.actions;
+export const { openModalDelivery, closeModalDelivery } = modalDeliverySlice.actions;
 
 export default modalDeliverySlice.reducer; //! в файле index.ts импортировала его как modalDeliveryReducer
