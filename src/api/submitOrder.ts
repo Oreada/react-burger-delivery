@@ -1,5 +1,5 @@
 import { clearOrder, ProductForOrder } from '../store/orderSlice';
-import { closeModal } from '../store/modalDeliverySlice';
+import { closeModalDelivery } from '../store/modalDeliverySlice';
 import { useAppDispatch } from '../store/hook';
 import { FormData } from '../components/ModalDelivery/ModalDelivery';
 
@@ -22,7 +22,7 @@ export const useSubmitOrder = () => {
 				throw new Error(`Request failed with status code ${response.status}`);
 			};
 
-			dispatch(closeModal());
+			dispatch(closeModalDelivery());
 			dispatch(clearOrder());
 
 			return await response.json();
