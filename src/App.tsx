@@ -6,7 +6,7 @@ import { Navigation } from './components/Navigation/Navigation';
 import { useAppSelector } from './store/hook';
 
 export const App = () => {
-  const { isOpen } = useAppSelector((state) => state.modalDelivery); //! так достаём данные из redux store
+  const { isDeliveryOpen } = useAppSelector((state) => state.modalDelivery); //! так достаём данные из redux store
 
   return (
     <div>
@@ -15,7 +15,7 @@ export const App = () => {
         <Navigation />
         <Catalog />
       </main>
-      {isOpen && <ModalDelivery />}
+      {isDeliveryOpen && <ModalDelivery />}
     </div>
   );
 };

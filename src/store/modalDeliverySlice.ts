@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export type ModalDeliveryState = {
-	isOpen: boolean;
+	isDeliveryOpen: boolean;
 };
 
 const initialState: ModalDeliveryState = {
-	isOpen: false,
+	isDeliveryOpen: false,
 };
 
 const modalDeliverySlice = createSlice({
@@ -13,10 +13,10 @@ const modalDeliverySlice = createSlice({
 	initialState: initialState,
 	reducers: {
 		openModal(state) {
-			state.isOpen = true;
+			state.isDeliveryOpen = true;
 		},
 		closeModal(state) {
-			state.isOpen = false;
+			state.isDeliveryOpen = false;
 		},
 	},
 });
