@@ -1,10 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductType } from './productSlice';
 
 export type ModalDetailState = {
 	isDetailOpen: boolean;
 	productDetail: ProductType;
 };
+
+type Payload = ProductType;
 
 const initialState: ModalDetailState = {
 	isDetailOpen: false,
@@ -31,9 +33,12 @@ const modalDetailSlice = createSlice({
 		closeModalDetail(state) {
 			state.isDetailOpen = false;
 		},
+		changeProductDetail(state, action: PayloadAction<Payload>) {
+			state.productDetail = action.payload;
+		},
 	},
 });
 
-export const { openModalDetail, closeModalDetail } = modalDetailSlice.actions;
+export const { openModalDetail, closeModalDetail, changeProductDetail } = modalDetailSlice.actions;
 
 export default modalDetailSlice.reducer; //! в файле index.ts импортировала его как modalDetailReducer
