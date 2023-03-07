@@ -49,7 +49,8 @@ export const ModalDelivery = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('formData', formData);
+    dispatch(closeModal());
+    //* TODO: выдать окно "Ваш заказ принят, в ближайшее время позвонит наш оператор"
 
     submitOrder({ ...formData, orderList: orderList });
   };
