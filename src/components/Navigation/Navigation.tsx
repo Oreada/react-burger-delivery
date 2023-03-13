@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useEffect } from 'react';
+import { API_URL } from '../../constants';
 import { getCategoriesList, changeCategory } from '../../store/categorySlice';
 import { useAppSelector, useAppDispatch } from '../../store/hook';
 import style from './Navigation.module.css';
@@ -7,7 +8,6 @@ import style from './Navigation.module.css';
 export const Navigation = () => {
 	const categoriesList = useAppSelector((state) => state.category.category); //! так достаём данные из redux store
 	const activeIndex = useAppSelector((state) => state.category.activeCategory);
-	// console.log(categoriesList);
 
 	const dispatch = useAppDispatch();
 
@@ -26,7 +26,6 @@ export const Navigation = () => {
 				<ul className={style.navigation__list}>
 
 					{
-						//* TODO: после деплоя бэка заменить backgroundImage на `url(${API_URI}/${item.image}`)
 						(() => {
 							if (Array.isArray(categoriesList)) {
 								return (
@@ -34,7 +33,7 @@ export const Navigation = () => {
 										<li key={item.title} className={style.navigation__item}>
 											<button className={classNames(style.navigation__button,
 												activeIndex === index ? style.navigation__button_active : '')}
-												style={{ backgroundImage: `url(${item.image})` }}
+												style={{ backgroundImage: `url(${API_URL}/${item.image}` }}
 												onClick={() => handleClick(index)}
 											>
 												{item.rus}
@@ -45,18 +44,6 @@ export const Navigation = () => {
 							}
 						})()
 					}
-
-					{/* {categoriesList.map((item, index) => (
-						<li key={index} className={style.navigation__item}>
-							<button className={classNames(style.navigation__button,
-								activeIndex === index ? style.navigation__button_active : '')}
-								style={{ backgroundImage: `url(${item.image})` }}
-								onClick={() => handleClick(index)}
-							>
-								{item.rus}
-							</button>
-						</li>
-					))} */}
 
 				</ul>
 			</div>

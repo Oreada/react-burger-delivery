@@ -8,8 +8,7 @@ import { useAppSelector } from './store/hook';
 
 export const App = () => {
   const { isDeliveryOpen } = useAppSelector((state) => state.modalDelivery); //! так достаём данные из redux store
-  const { isDetailOpen } = useAppSelector((state) => state.modalDetail);
-  const { productDetail } = useAppSelector((state) => state.modalDetail);
+  const { isDetailOpen, productDetail } = useAppSelector((state) => state.modalDetail);
 
   return (
     <div>
