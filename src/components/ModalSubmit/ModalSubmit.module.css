@@ -1,0 +1,135 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  overflow-y: auto;
+  display: flex;
+}
+
+.modal__close {
+  color: #B1B1B1;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  outline: 1px solid transparent;
+  outline-offset: 3px;
+  border-radius: 3px;
+  transition: color .3s ease-in-out;
+}
+
+.modal__close:hover {
+  color: #FF7020;
+}
+
+.modal__close:focus-visible {
+  color: #FF7020;
+  outline-color: #FF7020;
+}
+
+.msubmit {
+  position: relative;
+  cursor: default;
+  margin: auto;
+  /* --gap: 8px; */
+  background-color: #FFFFFF;
+  width: 100%;
+  min-height: 100%;
+  padding: 32px 10px;
+  display: flex;
+}
+
+.container {
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.modal__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  /* margin-bottom: 18px; */
+}
+
+.product__add {
+  background: #F2F2F3;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  padding: 9px;
+  transition: transform .1s ease, background-color .3s ease-in-out;
+}
+
+.product__add:hover {
+  background-color: #FFAB08;
+}
+
+.product__add:focus-visible {
+  background-color: #F86310;
+}
+
+.product__add:active {
+  transform: translate(1px, 2px)
+}
+
+.product__add:disabled {
+  background-color: #F9F9F9;
+  color: #ACACAC;
+}
+
+@media (min-width: 480px) {
+  .modal {
+    padding: 10px;
+  }
+
+  .msubmit {
+    max-width: 524px;
+    min-height: auto;
+    padding: 20px 16px 29px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal {
+    padding: 20px;
+  }
+
+  .modal__close {
+    top: 24px;
+    right: 24px;
+  }
+
+  .msubmit {
+    max-width: 684px;
+    /* padding: 44px 24px 24px 366px; */
+    /* background: url('../../img/donut.svg') 19px center, linear-gradient(to right, #FFAB08 50%, #fff 50%); */
+    /* background-size: 302px, auto; */
+    /* background-repeat: no-repeat; */
+  }
+
+  .modal__title {
+    font-size: 24px;
+    /* margin-bottom: 16px; */
+  }
+
+  .product__add {
+    border-radius: 12px;
+    font-size: 16px;
+    padding: 12px;
+  }
+}

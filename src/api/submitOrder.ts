@@ -3,10 +3,12 @@ import { closeModalDelivery } from '../store/modalDeliverySlice';
 import { useAppDispatch } from '../store/hook';
 import { FormData } from '../components/ModalDelivery/ModalDelivery';
 
+export type SubmitResult = FormData & Array<ProductForOrder> & { id: string };
+
 export const useSubmitOrder = () => {
 	const dispatch = useAppDispatch();
 
-	const submitOrder = async (data: FormData & { orderList: Array<ProductForOrder> }) => {
+	const submitOrder = async (data: FormData & { orderList: Array<ProductForOrder> }): Promise<SubmitResult> => {
 		try {
 			const response = await fetch(
 				'https://cloudy-slash-rubidium.glitch.me/api/order',
