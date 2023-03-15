@@ -7,10 +7,10 @@
 }
 
 .order__wrapper {
-  position: absolute;
+  /* position: absolute;
   left: 0;
   top: 0;
-  right: 0;
+  right: 0; */
   background: #FFFFFF;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.16);
   border-radius: 12px;

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { openModalDelivery } from '../../store/modalDeliverySlice';
 import { getOrderList } from '../../store/orderSlice';
@@ -17,6 +17,8 @@ export const Order = () => {
 
 	const dispatch = useAppDispatch();
 
+	const [isOrderShown, setIsOrderShown] = useState(false); //! для показа/скрытия корзины на малых экранах
+
 	useEffect(() => {
 		dispatch(getOrderList());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,11 +29,21 @@ export const Order = () => {
 		dispatch(openModalDelivery());
 	};
 
+	const handleBasketClick = () => {
+		setIsOrderShown(prev => !prev);
+	};
+
+	const handleHideBasketClick = () => {
+		setIsOrderShown(false);
+	};
+
 	return (
-		<div className={classNames(style.catalog__order, style.order)}>
+		<div className={isOrderShown ?
+			classNames(style.catalog__order, style.order, style.order_open) :
+			classNames(style.catalog__order, style.order)}>
 			<section className={style.order__wrapper}>
 				<div className={style.order__header} tabIndex={0} role="button">
-					<h2 className={style.order__title}>Корзина</h2>
+					<h2 className={style.order__title} onClick={handleBasketClick}>Корзина</h2>
 
 					<span className={style.order__count}>{totalCount}</span>
 				</div>
@@ -63,7 +75,7 @@ export const Order = () => {
 
 					<div className={style.order__apeal}>
 						<p className={style.order__text}>Бесплатная доставка</p>
-						<button className={style.order__close}>Свернуть</button>
+						<button className={style.order__close} onClick={handleHideBasketClick}>Свернуть</button>
 					</div>
 				</div>
 			</section>

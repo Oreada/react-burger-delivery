@@ -55,6 +55,11 @@
   gap: 10px;
 }
 
+.catalog__container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 
 @media (min-width: 1024px) {
   .catalog {
@@ -62,8 +67,9 @@
   }
 
   .catalog__container {
-    display: flex;
-    gap: 30px;
+    /* display: flex;
+    gap: 30px; */
+    flex-direction: row;
   }
 
   .catalog__order {
