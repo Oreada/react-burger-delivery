@@ -144,7 +144,7 @@ const orderSlice = createSlice({
 			.addCase(
 				getOrderList.rejected, (state, action) => {
 					state.orderGoods = [];
-					state.error = action.payload as string; //* TODO: сделать вывод ошибки для пользователя
+					state.error = action.payload as string;
 					console.log(state.error);
 				})
 	},

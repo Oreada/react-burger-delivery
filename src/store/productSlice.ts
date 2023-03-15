@@ -61,7 +61,7 @@ const productSlice = createSlice({
 			.addCase(
 				getProductsList.rejected, (state, action) => {
 					state.productsList = [];
-					state.error = action.payload as string; //* TODO: сделать вывод ошибки для пользователя
+					state.error = action.payload as string;
 					console.log(state.error);
 				})
 	},
