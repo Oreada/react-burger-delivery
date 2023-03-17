@@ -6,12 +6,6 @@ import { getOrderList } from '../../store/orderSlice';
 import { OrderItem } from '../OrderItem/OrderItem';
 import style from './Order.module.css';
 
-// const orderList = [
-// 	{ title: 'Супер сырный' },
-// 	{ title: 'Картошка фри' },
-// 	{ title: 'Жгучий хот-дог' },
-// ];
-
 export const Order = () => {
 	const { totalPrice, totalCount, orderList, orderGoods } = useAppSelector((state) => state.order); //! так достаём данные из redux store
 

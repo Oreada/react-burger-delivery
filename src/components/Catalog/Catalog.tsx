@@ -6,15 +6,6 @@ import { Order } from "../Order/Order";
 import { Product } from "../Product/Product";
 import style from './Catalog.module.css';
 
-// const goodsList = [
-// 	{ title: 'Мясная бомба' },
-// 	{ title: 'Супер сырный' },
-// 	{ title: 'Сытный' },
-// 	{ title: 'Итальянский' },
-// 	{ title: 'Вечная классика' },
-// 	{ title: 'Тяжёлый удар' },
-// ];
-
 export const Catalog = () => {
 	const products = useAppSelector((state) => state.product.productsList); //! так достаём данные из redux store
 	const categoriesList = useAppSelector((state) => state.category.category);
