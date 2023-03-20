@@ -62,6 +62,10 @@
   /* margin-bottom: 18px; */
 }
 
+.modal__price {
+  font-weight: 600;
+}
+
 .product__add {
   background: #F2F2F3;
   border-radius: 8px;

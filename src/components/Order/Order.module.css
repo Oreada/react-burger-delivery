@@ -37,14 +37,20 @@
   outline-color: #FFAB08;
 }
 
+.order__header:hover:after {
+  outline-color: #FFAB08;
+}
+
 .order_open .order__header {
   margin-bottom: 8px;
 }
 
 .order__title {
+  width: 100%;
   font-weight: 600;
   font-size: 16px;
   line-height: 100%;
+  cursor: pointer;
 }
 
 .order__count {
@@ -159,6 +165,7 @@
 
   .order__title {
     font-size: 24px;
+    cursor: auto;
   }
 
   .order__count {

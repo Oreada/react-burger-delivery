@@ -14,7 +14,7 @@ export const Catalog = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		if (categoriesList.length) {
+		if (categoriesList.length > 0) {
 			const activeCategory = categoriesList[activeIndex].title;
 			dispatch(getProductsList(activeCategory));
 		};
@@ -27,12 +27,12 @@ export const Catalog = () => {
 
 				<div className={style.catalog__wrapper}>
 					<h2 className={style.catalog__title}>
-						{categoriesList.length && categoriesList[activeIndex].rus}
+						{(categoriesList.length > 0) && categoriesList[activeIndex].rus}
 					</h2>
 
 					<div className={style.catalog__wrap_list}>
 
-						{products.length ? (
+						{(products.length > 0) ? (
 							<ul className={style.catalog__list}>
 
 								{products.map((item) => (
