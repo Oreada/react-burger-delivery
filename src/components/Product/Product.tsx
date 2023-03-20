@@ -23,7 +23,12 @@ export const Product = ({ product }: ProductProps) => {
 
 	return (
 		<article className={style.product}>
-			<img src={`${API_URL}/${product.image}`} alt={product.title} className={style.product__image} />
+			<img
+				src={`${API_URL}/${product.image}`}
+				alt={product.title}
+				className={style.product__image}
+				onClick={() => handleClickDetail(product)}
+			/>
 
 			<p className={style.product__price}>{product.price}<span className={style.currency}>&nbsp;₽</span></p>
 
