@@ -1,9 +1,7 @@
 import classNames from 'classnames';
 import { useState } from 'react';
-// import { useSubmitOrder } from '../../api/submitOrder';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { closeModalDelivery, submitOrder } from '../../store/modalDeliverySlice';
-// import { openModalSubmit } from '../../store/modalSubmitSlice';
 import { Loader } from '../Loader/Loader';
 import { rootPortal } from '../../index';
 import { createPortal } from 'react-dom';
@@ -21,8 +19,6 @@ export type FormData = {
 export const ModalDelivery = () => {
   const { orderList } = useAppSelector((state) => state.order);
   const isLoading = useAppSelector((state) => state.modalDelivery.loader);
-
-  // const submitOrder = useSubmitOrder(); //! обернула функцию сабмита заказа в кастомный хук
 
   const dispatch = useAppDispatch();
 
@@ -54,10 +50,7 @@ export const ModalDelivery = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // dispatch(closeModalDelivery());
-    // const res = await submitOrder({ ...formData, orderList: orderList });
     dispatch(submitOrder({ ...formData, orderList: orderList }));
-    // dispatch(openModalSubmit()); //! выдать окно подтверждения заказа
   };
 
   return (

@@ -52,7 +52,6 @@ export const getOrderList: AsyncThunk<ProductsList, undefined, { rejectValue: st
 		'order/fetch',
 		async (_, { rejectWithValue, getState }) => {
 			const listIds = (getState() as RootState).order.orderList.map((item) => item.id);
-			console.log('tets listIds', listIds);
 
 			try {
 				const res = await fetch(`${API_URL}${POSTFIX_PRODUCT}?list=${listIds}`);
