@@ -1,0 +1,26 @@
+.modal__close {
+  color: #B1B1B1;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  outline: 1px solid transparent;
+  outline-offset: 3px;
+  border-radius: 3px;
+  transition: color .3s ease-in-out;
+}
+
+.modal__close:hover {
+  color: #FF7020;
+}
+
+.modal__close:focus-visible {
+  color: #FF7020;
+  outline-color: #FF7020;
+}
+
+@media (min-width: 1024px) {
+  .modal__close {
+    top: 24px;
+    right: 24px;
+  }
+}
