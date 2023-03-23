@@ -9,6 +9,9 @@ import { store } from './store/index';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+export const rootPortal = document.getElementById('portal') as HTMLElement;
+
 root.render(
   <Provider store={store}>
     <App />

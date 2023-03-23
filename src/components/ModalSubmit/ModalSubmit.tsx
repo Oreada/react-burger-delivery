@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from '../../store/hook';
-import { closeModalSubmit } from '../../store/modalSubmitSlice';
+import { closeModalSubmit } from '../../store/modalDeliverySlice';
 import style from './ModalSubmit.module.css';
 
 export const ModalSubmit = () => {
-  const { orderId } = useAppSelector((state) => state.modalSubmit);
+  const { orderId } = useAppSelector((state) => state.modalDelivery);
 
   const dispatch = useAppDispatch();
 

@@ -2,6 +2,7 @@ import { AsyncThunk, createAsyncThunk, createSlice, Middleware, PayloadAction } 
 import { RootState } from '.';
 import { API_URL, POSTFIX_PRODUCT } from '../constants';
 import { ProductsList, ProductType } from './productSlice';
+import { submitOrder } from './modalDeliverySlice';
 
 export type ProductWithCount = ProductType & { count: number };
 
@@ -110,6 +111,11 @@ const orderSlice = createSlice({
 	},
 	extraReducers(builder) {
 		builder
+			.addCase(
+				submitOrder.fulfilled, (state) => {
+					state.orderList = [];
+					state.orderGoods = [];
+				})
 			.addCase(
 				getOrderList.pending, (state) => {
 					state.error = '';
