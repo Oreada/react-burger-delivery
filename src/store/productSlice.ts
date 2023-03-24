@@ -17,13 +17,11 @@ export type ProductsList = Array<ProductType>;
 
 export type ProductState = {
 	productsList: ProductsList;
-	loader: boolean;
 	error: string;
 };
 
 const initialState: ProductState = {
 	productsList: [],
-	loader: false,
 	error: '',
 };
 
@@ -53,19 +51,16 @@ const productSlice = createSlice({
 		builder
 			.addCase(
 				getProductsList.pending, (state) => {
-					state.loader = true;
 					state.error = '';
 				})
 			.addCase(
 				getProductsList.fulfilled, (state, action) => {
 					state.productsList = action.payload;
-					state.loader = false;
 					state.error = '';
 				})
 			.addCase(
 				getProductsList.rejected, (state, action) => {
 					state.productsList = [];
-					state.loader = false;
 					state.error = action.payload as string;
 					console.log(state.error);
 				})

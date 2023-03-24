@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../store/hook';
 import { closeModalDetail } from '../../store/modalDetailSlice';
 import { addProduct } from '../../store/orderSlice';
 import { ProductType } from '../../store/productSlice';
+import { CloseModalButton } from '../CloseModalButton/CloseModalButton';
 import style from './ModalDetail.module.css';
 
 export type ModalDetailProps = {
@@ -43,30 +44,7 @@ export const ModalDetail = ({ productDetail }: ModalDetailProps) => {
 					</button>
 				</div>
 
-				<button className={style.modal__close} type='button' id='closeDetail' onClick={handleCloseModal}>
-					<svg
-						width='24'
-						height='24'
-						viewBox='0 0 24 24'
-						fill='currentColor'
-						xmlns='http://www.w3.org/2000/svg'
-					>
-						<rect
-							x='5.07422'
-							y='5.28247'
-							width='1'
-							height='20'
-							transform='rotate(-45 5.07422 5.28247)'
-						/>
-						<rect
-							x='5.78125'
-							y='19.4246'
-							width='1'
-							height='20'
-							transform='rotate(-135 5.78125 19.4246)'
-						/>
-					</svg>
-				</button>
+				<CloseModalButton close={handleCloseModal} idName={'closeDetail'} />
 			</div>
 		</div>
 	);

@@ -2,10 +2,8 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { closeModalDelivery, submitOrder } from '../../store/modalDeliverySlice';
-import { Loader } from '../Loader/Loader';
-import { rootPortal } from '../../index';
-import { createPortal } from 'react-dom';
 import style from './ModalDelivery.module.css';
+import { CloseModalButton } from '../CloseModalButton/CloseModalButton';
 
 export type FormData = {
   name: string,
@@ -18,7 +16,6 @@ export type FormData = {
 
 export const ModalDelivery = () => {
   const { orderList } = useAppSelector((state) => state.order);
-  const isLoading = useAppSelector((state) => state.modalDelivery.loader);
 
   const dispatch = useAppDispatch();
 
@@ -55,7 +52,6 @@ export const ModalDelivery = () => {
 
   return (
     <>
-      {isLoading && createPortal(<Loader />, rootPortal)}
       <div className={style.modal} onClick={handleCloseModal}>
         <div className={style.mdelivery}>
           <div className={style.container}>
@@ -148,30 +144,7 @@ export const ModalDelivery = () => {
             </button>
           </div>
 
-          <button className={style.modal__close} type='button' id='closeDelivery' onClick={handleCloseModal}>
-            <svg
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='currentColor'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <rect
-                x='5.07422'
-                y='5.28247'
-                width='1'
-                height='20'
-                transform='rotate(-45 5.07422 5.28247)'
-              />
-              <rect
-                x='5.78125'
-                y='19.4246'
-                width='1'
-                height='20'
-                transform='rotate(-135 5.78125 19.4246)'
-              />
-            </svg>
-          </button>
+          <CloseModalButton close={handleCloseModal} idName={'closeDelivery'} />
         </div>
       </div>
     </>
