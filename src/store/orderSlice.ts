@@ -33,11 +33,11 @@ const initialState: OrderState = {
 //! говорят, его часто используют для работы с токенами
 export const localStorageMiddleware: Middleware = (store) => (next) => (action) => {
 	const nextAction = next(action);
-	console.log(nextAction);
+	// console.log(nextAction);
 
 	if (nextAction.type.startsWith('order/')) {
 		const orderList = store.getState().order.orderList;
-		console.log('orderList from STORE', orderList);
+		// console.log('orderList from STORE', orderList);
 		localStorage.setItem('orderList', JSON.stringify(orderList)); //! сохраняем заказ в localStorage
 	};
 
