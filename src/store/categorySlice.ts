@@ -11,16 +11,18 @@ export type CategoriesList = Array<Category>;
 
 export type CategoryState = {
 	category: CategoriesList;
-	error: string;
 	activeCategory: number;
+	loader: boolean;
+	error: string;
 };
 
 type Payload = number;
 
 const initialState: CategoryState = {
 	category: [],
-	error: '',
 	activeCategory: 0,
+	loader: false,
+	error: '',
 };
 
 //! <чтоВозвращает, чтоПринимает, допОпции>
@@ -52,14 +54,17 @@ const categorySlice = createSlice({
 	extraReducers(builder) {
 		builder
 			.addCase(getCategoriesList.pending, (state) => {
+				state.loader = true;
 				state.error = '';
 			})
 			.addCase(getCategoriesList.fulfilled, (state, action) => {
-				state.error = '';
 				state.category = action.payload;
+				state.loader = false;
+				state.error = '';
 			})
 			.addCase(getCategoriesList.rejected, (state, action) => {
 				state.category = [];
+				state.loader = false;
 				state.error = action.payload as string;
 				console.log(state.error);
 			})

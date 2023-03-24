@@ -13,7 +13,7 @@ export const Catalog = () => {
 	const products = useAppSelector((state) => state.product.productsList); //! так достаём данные из redux store
 	const categoriesList = useAppSelector((state) => state.category.category);
 	const activeIndex = useAppSelector((state) => state.category.activeCategory);
-	const isLoading = useAppSelector((state) => state.product.loader);
+	const isLoading = useAppSelector((state) => state.category.loader);
 
 	const dispatch = useAppDispatch();
 
