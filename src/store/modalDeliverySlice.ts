@@ -71,6 +71,8 @@ const modalDeliverySlice = createSlice({
 			.addCase(
 				submitOrder.pending, (state) => {
 					state.loader = true;
+					state.isDeliveryOpen = false;
+					state.isSubmitOpen = false;
 					state.error = '';
 				})
 			.addCase(

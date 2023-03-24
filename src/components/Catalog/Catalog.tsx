@@ -13,7 +13,8 @@ export const Catalog = () => {
 	const products = useAppSelector((state) => state.product.productsList); //! так достаём данные из redux store
 	const categoriesList = useAppSelector((state) => state.category.category);
 	const activeIndex = useAppSelector((state) => state.category.activeCategory);
-	const isLoading = useAppSelector((state) => state.category.loader);
+	const isLoadingCategory = useAppSelector((state) => state.category.loader);
+	const isLoadingSubmit = useAppSelector((state) => state.modalDelivery.loader);
 
 	const dispatch = useAppDispatch();
 
@@ -26,7 +27,8 @@ export const Catalog = () => {
 
 	return (
 		<>
-			{isLoading && createPortal(<Loader />, rootPortal)}
+			{isLoadingCategory && createPortal(<Loader />, rootPortal)}
+			{isLoadingSubmit && createPortal(<Loader />, rootPortal)}
 			<section className={style.catalog}>
 				<div className={classNames(style.container, style.catalog__container)}>
 					<Order />

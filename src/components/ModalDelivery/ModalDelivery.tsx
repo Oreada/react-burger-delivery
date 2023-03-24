@@ -2,9 +2,6 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { closeModalDelivery, submitOrder } from '../../store/modalDeliverySlice';
-import { Loader } from '../Loader/Loader';
-import { rootPortal } from '../../index';
-import { createPortal } from 'react-dom';
 import style from './ModalDelivery.module.css';
 import { CloseModalButton } from '../CloseModalButton/CloseModalButton';
 
@@ -19,7 +16,6 @@ export type FormData = {
 
 export const ModalDelivery = () => {
   const { orderList } = useAppSelector((state) => state.order);
-  const isLoading = useAppSelector((state) => state.modalDelivery.loader);
 
   const dispatch = useAppDispatch();
 
@@ -56,7 +52,6 @@ export const ModalDelivery = () => {
 
   return (
     <>
-      {isLoading && createPortal(<Loader />, rootPortal)}
       <div className={style.modal} onClick={handleCloseModal}>
         <div className={style.mdelivery}>
           <div className={style.container}>
