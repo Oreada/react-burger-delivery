@@ -18,7 +18,7 @@ export const OrderItem = ({ good }: OrderItemProps) => {
 				<p className={style.goods__weight}>{good.weight}&nbsp;г</p>
 
 				<p className={style.goods__price}>{good.price}
-					<span className={style.currency}>&nbsp;₽</span>
+					<span className={style.currency}>&nbsp;MDL</span>
 				</p>
 			</div>
 

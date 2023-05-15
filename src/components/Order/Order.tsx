@@ -55,7 +55,7 @@ export const Order = () => {
 						<p>Итого</p>
 						<p>
 							<span className={style.order__amount}>{totalPrice}</span>
-							<span className={style.currency}>&nbsp;₽</span>
+							<span className={style.currency}>&nbsp;MDL</span>
 						</p>
 					</div>
 
@@ -68,7 +68,7 @@ export const Order = () => {
 					</button>
 
 					<div className={style.order__apeal}>
-						<p className={style.order__text}>Бесплатная доставка</p>
+						<p className={style.order__text}>Бесплатная доставка от 200 MDL</p>
 						<button className={style.order__close} onClick={handleHideBasketClick}>Свернуть</button>
 					</div>
 				</div>
