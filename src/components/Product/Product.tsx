@@ -30,7 +30,7 @@ export const Product = ({ product }: ProductProps) => {
 				onClick={() => handleClickDetail(product)}
 			/>
 
-			<p className={style.product__price}>{product.price}<span className={style.currency}>&nbsp;₽</span></p>
+			<p className={style.product__price}>{product.price}<span className={style.currency}>&nbsp;MDL</span></p>
 
 			<h3 className={style.product__title}>
 				<button

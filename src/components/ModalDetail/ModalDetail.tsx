@@ -34,7 +34,7 @@ export const ModalDetail = ({ productDetail }: ModalDetailProps) => {
 						<p className={style.modal__description}>{productDetail.description}</p>
 						<p className={style.modal__ingredients}>Ингредиенты:&nbsp;{productDetail.ingredients.join(', ')}</p>
 						<p className={style.modal__weight}>Вес:&nbsp;{productDetail.weight}&nbsp;г</p>
-						<p className={style.modal__price}>Цена:&nbsp;{productDetail.price}&nbsp;₽</p>
+						<p className={style.modal__price}>Цена:&nbsp;{productDetail.price}&nbsp;MDL</p>
 					</div>
 					<button
 						className={style.product__add}

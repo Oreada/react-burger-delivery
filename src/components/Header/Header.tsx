@@ -12,7 +12,7 @@ export const Header = () => {
 						<span>Только самые</span>
 						<span className={style.header__red}>сочные бургеры!</span>
 					</h1>
-					<p className={style.header__appeal}>Бесплатная доставка от 599₽</p>
+					<p className={style.header__appeal}>Бесплатная доставка от 200 лей</p>
 				</div>
 			</div>
 		</header >
